@@ -1,5 +1,5 @@
 const CONFIG = {
-    GROQ_API_KEY: '',
+    GROQ_API_KEY: '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',
     GROQ_MODEL: "meta-llama/llama-4-scout-17b-16e-instruct",
     GROQ_API_URL: 'https://api.groq.com/openai/v1/chat/completions',
 
