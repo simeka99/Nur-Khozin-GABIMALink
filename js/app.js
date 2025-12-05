@@ -985,7 +985,7 @@ async function runOCR(imageDataURL)
         if (!jsonMatch) throw new Error("Tidak ada JSON valid dari OCR");
 
         result = JSON.parse(jsonMatch[0]);
-        console.log("HASIL OCR:", result);
+        //console.log("HASIL OCR:", result);
 
         ocrStatusEl.textContent = 'Vision Selesai';
         ocrStatusEl.style.background = '#10b981';
