@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GABIMA Link</title>
+    <meta name="description" content="Aplikasi cetak struk transfer tercepat">
+
+    <!-- PWA META TAGS -->
+    <meta name="theme-color" content="#1e40af">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="GABIMA">
+
+    <!-- MANIFEST & ICONS -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/logo-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/logo-192.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="assets/logo-512.png">
+
+    <!-- FONT & CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Tambahin di <head> -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:;">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+
+    <!-- <script>
+        document.addEventListener('contextmenu', function (e)
+        {
+            e.preventDefault();
+            return false;
+        });
+        document.onkeydown = function (e)
+        {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74 || e.keyCode == 75)) return false;
+            if (e.ctrlKey && e.keyCode == 85) return false;
+            if (e.ctrlKey && e.keyCode == 83) return false;
+            if (e.ctrlKey && e.keyCode == 65) return false;
+        };
+        document.onselectstart = function () { return false; };
+        document.ondragstart = function () { return false; };
+    </script> -->
+
+</head>
+
+<body>
+
+    <!-- AppBar -->
+    <header class="appbar">
+        <h1>GABIMA<span>Link</span></h1>
+        <div class="ocr-status" id="ocrStatus">Vision Ready</div>
+    </header>
+
+    <!-- Main -->
+    <main class="container">
+
+        <!-- Upload Foto Struk -->
+        <div class="card">
+            <div class="upload-area" id="dropArea">
+                <input type="file" id="fileInput" class="file-input" accept="image/*" />
+                <svg width="48" height="48" fill="none" stroke="#94a3b8" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                <p style="margin:1rem 0 0.5rem;font-weight:600;">Upload Foto Struk</p>
+                <p style="font-size:0.875rem;color:var(--gray-600);">Klik atau tarik gambar ke sini</p>
+                <p class="file-name" id="fileName">No file chosen</p>
+            </div>
+            <!-- <button class="btn btn-primary" id="processBtn" disabled>
+                Proses Data
+            </button> -->
+        </div>
+
+
+        <!-- Detail Struk – FINAL & TIDAK ADA DOUBLE LAGI -->
+        <div class="card detail-struk-card">
+            <h3>
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Detail Struk
+            </h3>
+
+            <!-- JENIS TRANSAKSI -->
+            <div class="form-group">
+                <label class="form-label">Jenis Transaksi</label>
+                <select id="jenisTransaksi" class="form-input">
+                    <option value="Transfer Antar Bank">Transfer Antar Bank</option>
+                    <option value="Top Up E-Wallet">Top Up E-Wallet</option>
+                    <option value="Top Up E-Money">Top Up E-Money</option>
+                    <option value="Pembayaran Virtual Account">Pembayaran Virtual Account</option>
+                    <option value="PLN Postpaid">PLN Postpaid</option>
+                    <option value="PLN Prepaid">PLN Prepaid</option>
+                    <option value="E-Samsat">E-Samsat</option>
+                    <option value="Bayar Cicilan">Bayar Cicilan</option>
+                </select>
+            </div>
+
+            <!-- TUJUAN -->
+            <div class="form-group" id="groupTujuan">
+                <label class="form-label" id="labelTujuan">Bank Tujuan</label>
+                <div class="bank-row">
+                    <input type="text" id="tujuanInput" class="form-input" readonly placeholder="Pilih tujuan" />
+                    <button class="btn btn-outline" id="btnPilihTujuan">Pilih</button>
+                </div>
+            </div>
+
+            <!-- NO AKUN UTAMA — AKAN DIHIDE UNTUK JENIS KHUSUS -->
+            <div class="form-group" id="groupNoAkunMain">
+                <label class="form-label" id="labelNoAkun">No. Rekening / No. Akun</label>
+                <input type="text" id="noAkun" class="form-input" placeholder="******6069" />
+            </div>
+
+            <!-- NAMA PENERIMA -->
+            <div class="form-group" id="groupNamaPenerima">
+                <label class="form-label" id="labelNamaPenerima">Nama Penerima</label>
+                <input type="text" id="namaPenerima" class="form-input" placeholder="Nama penerima" />
+            </div>
+
+            <!-- SUMBER DANA -->
+            <div class="form-group" id="groupNamaPengirim">
+                <label class="form-label">Sumber Dana</label>
+                <select id="namaPengirim" class="form-input">
+                    <option value="">Pilih atau ketik nama</option>
+                </select>
+            </div>
+
+            <!-- NO REF -->
+            <div class="form-group" id="groupNoRef">
+                <label class="form-label">No. Reff</label>
+                <input type="text" id="noRef" class="form-input" placeholder="Masukkan No Ref" />
+            </div>
+
+
+
+            <!-- CONTAINER KHUSUS UNTUK SEMUA FIELD EKSTRA (termasuk No. Kontrak, Token, dll) -->
+            <div id="extraFieldsContainer"></div>
+
+            <!-- KETERANGAN -->
+            <div class="form-group" id="groupKeterangan" style="display:none;">
+                <label class="form-label">Keterangan</label>
+                <textarea class="catatan-textarea" id="keterangan" placeholder="Detail transaksi"></textarea>
+            </div>
+
+            <!-- NOMINAL + ADMIN + TOTAL — SELALU PALING BAWAH -->
+            <div class="row-grid-nominal"
+                style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--gray-300);">
+                <div class="col-nominal">
+                    <label class="form-label">Nominal</label>
+                    <input type="text" id="nominal" class="form-input" placeholder="0" value="0"
+                        oninput="formatNominal(this)" />
+                </div>
+                <div class="col-admin">
+                    <label class="form-label">Biaya Admin</label>
+                    <input type="text" id="biayaAdmin" class="form-input" placeholder="0" value="0"
+                        oninput="formatAdmin(this)" />
+                    <div class="nominal-options" id="quickAdminButtons"></div>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 12px;">
+                <label class="form-label">Total = Nominal + Biaya Admin</label>
+                <div class="total-display" id="totalDisplay">Rp 0</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Catatan</label>
+                <textarea class="catatan-textarea" id="catatan"
+                    placeholder="Contoh: Top up DANA, bayar angsuran, token rumah, dll"></textarea>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal Pilih Tujuan — FONT KECIL, TOMBOL LEBAR, NYAMAN -->
+    <div class="modal" id="bankModal">
+        <div class="modal-content" style="max-height:80vh; width:94%; max-width:440px;">
+            <div class="modal-header">
+                <h3 id="modalTujuanTitle">Pilih Tujuan</h3>
+                <button onclick="closeModal('bankModal')"
+                    style="background:none;border:none;font-size:2rem;cursor:pointer;color:#888;">×</button>
+            </div>
+
+            <div class="modal-body" style="padding:0;">
+                <!-- SEARCH -->
+                <div style="padding:1rem 1rem 0.5rem;">
+                    <input type="text" id="bankSearch" class="form-input" placeholder="Cari bank / e-wallet..."
+                        autocomplete="off">
+                </div>
+
+                <!-- LIST -->
+                <div id="bankList" style="max-height:calc(80vh - 130px); overflow-y:auto; padding:0 0.8rem 1rem;">
+                    <!-- diisi JS -->
+                </div>
+
+                <div id="noResult"
+                    style="display:none; text-align:center; padding:2.5rem 1rem; color:#94a3b8; font-size:0.95rem;">
+                    Tidak ditemukan
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal – FIX: NO SCROLL, TOMBOL DEKAT -->
+    <div class="modal" id="previewModal">
+        <div class="modal-content"
+            style="max-height:95vh; width:90%; max-width:420px; display:flex; flex-direction:column;">
+
+            <!-- Header -->
+            <div class="modal-header"
+                style="padding:0.75rem 1rem; border-bottom:1px solid #e5e7eb; display:flex; justify-content:space-between; align-items:center;">
+                <h3 style="margin:0; font-size:1.1rem; font-weight:600;">Preview Struk</h3>
+                <button type="button" onclick="closeModal('previewModal')"
+                    style="background:none; border:none; font-size:1.8rem; cursor:pointer; color:#6b7280;">×</button>
+            </div>
+
+            <!-- Body – Struk Preview -->
+            <div class="modal-body" style="flex:1; overflow-y:auto; padding:0.75rem; background:#f9fafb;">
+                <div class="struk-preview" id="strukText" style="background:white; padding:0.85rem; border-radius:8px; 
+            box-shadow:0 4px 12px rgba(0,0,0,0.1); font-family:'Courier New',monospace; 
+            font-size:13px; line-height:1.5; white-space:pre; overflow-x:hidden;">
+                </div>
+            </div>
+
+            <!-- Tombol – POSISI MELEKAT KE STRUK (FIX) -->
+            <div model-footer style="
+                padding:0.45rem 0.9rem;
+                border-top:1px solid #e5e7eb;
+                background:white;
+                margin-top:0;
+            ">
+
+                <div style="
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                gap:1.1rem;
+                padding:0;
+                margin:0;
+            ">
+
+
+                    <!-- SHARE -->
+                    <button type="button" onclick="shareStruk(event)" title="Bagikan"
+                        style="background:#10b981; color:white; border:none; cursor:pointer; padding:0.75rem; border-radius:50%;
+                        width:50px; height:50px; display:flex; align-items:center; justify-content:center; transition:all 0.3s;">
+                        <svg style="width:24px; height:24px; stroke:currentColor; fill:none; stroke-width:2;"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                        </svg>
+                    </button>
+
+                    <!-- PRINT -->
+                    <button type="button" onclick="printBluetooth()" id="printBtn" title="Cetak Struk"
+                        style="background:#3b82f6; color:white; border:none; cursor:pointer; padding:0.75rem; border-radius:50%;
+                        width:56px; height:56px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(59,130,246,0.4); transition:all 0.3s;">
+                        <svg style="width:28px; height:28px; stroke:currentColor; fill:none; stroke-width:2;"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M17 17h2a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2m2 4h6a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2zm8-12V5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v4h10z" />
+                        </svg>
+                    </button>
+
+                    <!-- DOWNLOAD PNG -->
+                    <button type="button" onclick="downloadPNG()" title="Download PNG"
+                        style="background:#f59e0b; color:white; border:none; cursor:pointer; padding:0.75rem; border-radius:50%;
+                        width:50px; height:50px; display:flex; align-items:center; justify-content:center; transition:all 0.3s;">
+                        <svg style="width:24px; height:24px; stroke:currentColor; fill:none; stroke-width:2;"
+                            viewBox="0 0 24 24">
+                            <path d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header"
+                style="padding:.75rem 1rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e5e7eb">
+                <h3 style="margin:0;font-size:1.15rem;font-weight:600">Pengaturan</h3>
+                <div style="display:flex;align-items:center;gap:1rem">
+                    <span style="font-size:.85rem;color:#6b7280;font-weight:500">Version <span
+                            id="appVersion">1.1.1</span></span>
+                    <button onclick="closeModal('settingsModal')"
+                        style="background:none;border:none;font-size:1.7rem;cursor:pointer;color:#6b7280;line-height:1">×</button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- Nama Pengirim Section -->
+                <div class="settings-section" id="pengirimSection">
+                    <div class="section-title">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Nama Pengirim
+                    </div>
+                    <p class="section-desc">Kelola nama pengirim yang sering digunakan. Yang ditandai default akan
+                        otomatis terisi jika OCR kosong.</p>
+
+                    <div class="form-group">
+                        <div class="bank-row" style="margin-bottom:0.5rem;">
+                            <input type="text" id="inputNamaPengirim" class="form-input"
+                                placeholder="Masukkan nama pengirim" />
+                            <button class="btn btn-primary" onclick="tambahNamaPengirim()">Tambah</button>
+                        </div>
+                    </div>
+
+                    <div id="daftarPengirim"></div>
+                </div>
+
+
+
+                <!-- Format Struk -->
+                <div class="settings-section">
+                    <div class="section-title">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Format Struk
+                    </div>
+                    <p class="section-desc">Atur format tampilan struk cetak.</p>
+
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+                        <span style="font-weight:600;">Preview Sebelum Cetak</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="previewBeforePrint" checked onchange="savePrintSettings()" />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Format Huruf Struk</label>
+                        <div style="display:flex; gap:0.75rem; margin-top:0.75rem;">
+                            <label
+                                style="display:flex; align-items:center; gap:0.75rem; cursor:pointer; padding:0.625rem; border:2px solid #e5e7eb; border-radius:8px; transition:all 0.2s; background:#f9fafb;">
+                                <input type="radio" name="textCase" value="lowercase"
+                                    style="cursor:pointer; width:18px; height:18px;">
+                                <span style="font-weight:500; color:#374151;">aaa</span>
+                            </label>
+                            <label
+                                style="display:flex; align-items:center; gap:0.75rem; cursor:pointer; padding:0.625rem; border:2px solid #e5e7eb; border-radius:8px; transition:all 0.2s; background:#f9fafb;">
+                                <input type="radio" name="textCase" value="uppercase"
+                                    style="cursor:pointer; width:18px; height:18px;">
+                                <span style="font-weight:500; color:#374151;">AAA</span>
+                            </label>
+                            <label
+                                style="display:flex; align-items:center; gap:0.75rem; cursor:pointer; padding:0.625rem; border:2px solid #e5e7eb; border-radius:8px; transition:all 0.2s; background:#f9fafb;">
+                                <input type="radio" name="textCase" value="capitalize"
+                                    style="cursor:pointer; width:18px; height:18px;">
+                                <span style="font-weight:500; color:#374151;">Aaa</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logo Toko - Main Logo -->
+                <div class="settings-section">
+                    <div class="section-title">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        Logo Toko Umum
+                    </div>
+                    <p class="section-desc">Logo utama yang akan ditampilkan pada struk cetak.</p>
+
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+                        <span style="font-weight:600;">Tampilkan Logo pada Struk</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="tampilkanLogo" />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Upload Logo Utama</label>
+                        <input type="file" id="logoInput" accept="image/*" class="form-input" />
+                        <p class="logo-info">Logo akan diperkecil otomatis (lebar maks. 55mm) agar tidak boros kertas.
+                        </p>
+                    </div>
+
+                    <div id="logoPreviewContainer" style="display:none; margin-bottom:1rem;">
+                        <img id="logoPreview" class="logo-preview" src="" alt="Preview Logo" />
+                        <button class="btn btn-danger" style="margin-top:0.5rem;" onclick="hapusLogo()">Hapus
+                            Logo</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- History Modal -->
+    <div class="modal" id="historyModal">
+        <div class="modal-content">
+            <div class="modal-header"
+                style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;">
+                <h3 style="margin:0;font-size:1.25rem;">Riwayat Struk</h3>
+
+                <div style="display:flex;gap:10px;align-items:center;">
+                    <!-- TOMBOL DELETE ALL — KECIL & CANTIK -->
+                    <button onclick="deleteAllHistory()" title="Hapus Semua Riwayat"
+                        style="display:flex;align-items:center;gap:5px;padding:6px 10px;background:white;border:1.5px solid #dc2626;border-radius:6px;color:#dc2626;font-weight:600;font-size:0.85rem;cursor:pointer;transition:all 0.2s;"
+                        onmouseover="this.style.background='#fee2e2'" onmouseout="this.style.background='white'">
+                        <span>Delete All</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="#dc2626" stroke-width="2.3" fill="none">
+                            <path
+                                d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                            <line x1="10" y1="11" x2="10" y2="17" />
+                            <line x1="14" y1="11" x2="14" y2="17" />
+                        </svg>
+                    </button>
+
+                    <!-- Tombol Tutup -->
+                    <button onclick="closeModal('historyModal')"
+                        style="background:none;border:none;font-size:1.8rem;cursor:pointer;line-height:1;color:#666;">
+                        ×
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body" id="historyList"></div>
+        </div>
+    </div>
+
+
+    <!-- Bottom Bar 5 Menu -->
+    <nav class="bottom-bar">
+        <div class="nav-item active" data-page="home" onclick="setActivePage('home')">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span>Home</span>
+        </div>
+
+        <div class="nav-item" data-page="history" onclick="setActivePage('history'); openHistoryModal()">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>History</span>
+        </div>
+
+        <div class="nav-print" onclick="handlePrintAction()" id="printButton">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+        </div>
+
+        <div class="nav-item" data-page="settings" onclick="setActivePage('settings'); openSettingsModal()">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                </path>
+                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span>Settings</span>
+        </div>
+
+        <div class="nav-item" data-page="logout" onclick="setActivePage('logout')">
+            <svg viewBox="0 0 24 24">
+                <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            <span>Logout</span>
+        </div>
+    </nav>
+
+    <!-- CONFIRM MODAL CANTIK -->
+    <div id="customConfirm" class="custom-modal">
+        <div class="modal-content">
+            <div class="modal-header" id="confirmTitle">Konfirmasi</div>
+            <div class="modal-body" id="confirmMessage">Apakah kamu yakin?</div>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="confirmCancel">Batal</button>
+                <button class="btn-danger" id="confirmOk">Ya, Hapus</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT MODAL CANTIK (Edit Nama) -->
+    <div id="customPrompt" class="custom-modal">
+        <div class="modal-content">
+            <div class="modal-header">Edit Nama Pengirim</div>
+            <div class="modal-body">
+                <input type="text" id="promptInput" class="form-input" placeholder="Masukkan nama baru">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="promptCancel">Batal</button>
+                <button class="btn-primary" id="promptOk">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION — WAJIB ADA! -->
+    <div id="toastNotify" class="toast-base">Pesan akan muncul di sini</div>
+
+
+    <!-- INSTALL BANNER UNTUK ANDROID (otomatis muncul) -->
+    <div id="installBanner"
+        style="display:none; position:fixed; bottom:0; left:0; right:0; background:#1e40af; color:white; padding:16px; text-align:center; z-index:9999; font-family:Inter,sans-serif; box-shadow:0 -2px 10px rgba(0,0,0,0.3); align-items:center; justify-content:space-between;">
+        <div style="flex:1;">Install Aplikasi GABIMALink</div>
+        <button id="installBtn"
+            style="background:white; color:#1e40af; border:none; padding:10px 20px; border-radius:8px; font-weight:600; margin:0 10px;">Install</button>
+        <button id="closeInstall"
+            style="background:transparent; color:white; border:none; font-size:20px; padding:0 10px;">×</button>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="js/version.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="js/app.js"></script>
+
+
+
+</body>
+
+</html>

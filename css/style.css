@@ -1,0 +1,1170 @@
+:root
+{
+    --primary: #1d4ed8;
+    --primary-light: #3b82f6;
+    --accent: #1d4ed8;
+    --accent-light: rgba(29, 78, 216, 0.1);
+    --accent-border: rgba(29, 78, 216, 0.2);
+    --orange: #f97316;
+    --gray-100: #f8fafc;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-600: #475569;
+    --gray-800: #1e293b;
+    --radius: 16px;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    font-family: 'Inter', sans-serif;
+    background: var(--gray-100);
+    color: var(--gray-800);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* AppBar */
+.appbar
+{
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.appbar h1
+{
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.appbar h1 span
+{
+    color: var(--orange);
+}
+
+.ocr-status
+{
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+/* Container - Scroll lancar di HP */
+.container
+{
+    flex: 1;
+    padding: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+    padding-bottom: 100px;
+    /* Naikkan agar tidak tertutup bottom bar */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Card */
+.card
+{
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.detail-struk-card
+{
+    background: var(--accent-light);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 1;
+}
+
+.container
+{
+    flex: 1;
+    padding: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+    padding-bottom: 0px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.container::-webkit-scrollbar
+{
+    width: 6px;
+}
+
+.container::-webkit-scrollbar-thumb
+{
+    background: rgba(29, 78, 216, 0.3);
+    border-radius: 3px;
+}
+
+.detail-struk-card .form-group
+{
+    margin-bottom: 1.25rem;
+}
+
+/* Upload Area */
+.upload-area
+{
+    border: 2px dashed var(--gray-300);
+    border-radius: var(--radius);
+    padding: 2rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 1rem;
+}
+
+.upload-area:hover
+{
+    border-color: var(--primary);
+    background: #eff6ff;
+}
+
+.upload-area.dragover
+{
+    background: #dbeafe;
+    border-color: var(--primary);
+}
+
+.file-input
+{
+    display: none;
+}
+
+.file-name
+{
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+/* Button */
+.btn
+{
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.btn-primary
+{
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover
+{
+    background: #1e40af;
+}
+
+.btn-outline
+{
+    background: transparent;
+    border: 1.5px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover
+{
+    background: rgba(29, 78, 216, 0.05);
+}
+
+.btn-small
+{
+    padding: 0.35rem 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    min-width: 0;
+    flex: 1;
+}
+
+/* Form */
+.form-group
+{
+    margin-bottom: 1rem;
+}
+
+.form-label
+{
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--gray-800);
+}
+
+.form-input
+{
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 12px;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-input:focus
+{
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.example-text
+{
+    font-size: 0.75rem;
+    color: var(--gray-600);
+    margin-bottom: 0.5rem;
+}
+
+.total-display
+{
+    background: white;
+    border: 1px solid var(--gray-300);
+    border-radius: 12px;
+    padding: 0.75rem;
+    text-align: right;
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.catatan-textarea
+{
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 12px;
+    font-size: 1rem;
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* NOMINAL 60% + ADMIN 40% */
+.row-grid-nominal
+{
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+}
+
+.col-nominal
+{
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+}
+
+.col-admin
+{
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.col-nominal .form-input,
+.col-admin .form-input
+{
+    width: 100%;
+}
+
+.col-admin .nominal-options
+{
+    display: flex;
+    gap: 0.25rem;
+    margin-top: 0.35rem;
+}
+
+.col-admin .nominal-options .btn-small
+{
+    flex: 1;
+    padding: 0.35rem 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    min-width: 0;
+}
+
+.row-grid-nominal .form-label
+{
+    margin-bottom: 0.35rem;
+}
+
+/* Bank Row */
+.bank-row
+{
+    display: flex;
+    gap: 0.5rem;
+    align-items: end;
+}
+
+.bank-row .form-input
+{
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.bank-row .btn
+{
+    width: auto;
+    padding: 0.75rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.detail-struk-card h3
+{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.detail-struk-card h3 svg
+{
+    width: 20px;
+    height: 20px;
+    stroke: var(--primary);
+}
+
+/* Settings Modal */
+#settingsModal .modal-content
+{
+    max-width: 400px;
+    max-height: 85vh;
+}
+
+.settings-section
+{
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.settings-section:last-child
+{
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.section-title
+{
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+}
+
+.section-desc
+{
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    margin-bottom: 1rem;
+}
+
+/* Toggle Switch */
+.toggle-switch
+{
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 28px;
+}
+
+.toggle-switch input
+{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider
+{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--gray-300);
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before
+{
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider
+{
+    background-color: var(--primary);
+}
+
+input:checked+.slider:before
+{
+    transform: translateX(20px);
+}
+
+/* Logo */
+.logo-preview
+{
+    margin-top: 0.5rem;
+    max-width: 100px;
+    max-height: 50px;
+    border-radius: 8px;
+    border: 1px dashed var(--gray-300);
+    display: block;
+}
+
+.logo-info
+{
+    font-size: 0.75rem;
+    color: var(--gray-600);
+    margin-top: 0.5rem;
+}
+
+.btn-danger
+{
+    background: #dc2626;
+    color: white;
+}
+
+.btn-danger:hover
+{
+    background: #b91c1c;
+}
+
+/* History Modal */
+#historyModal .modal-content
+{
+    max-width: 400px;
+    max-height: 80vh;
+}
+
+.history-item
+{
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.history-item:hover
+{
+    background: var(--gray-100);
+}
+
+.history-item:last-child
+{
+    border-bottom: none;
+}
+
+.history-time
+{
+    font-size: 0.75rem;
+    color: var(--gray-600);
+    margin-bottom: 0.25rem;
+}
+
+.history-title
+{
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--gray-800);
+}
+
+.history-actions
+{
+    display: flex;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+.history-actions .btn
+{
+    flex: 1;
+    padding: 0.4rem;
+    font-size: 0.8rem;
+    gap: 4px;
+}
+
+.btn-edit
+{
+    background: #f59e0b;
+    color: white;
+}
+
+.btn-edit:hover
+{
+    background: #d97706;
+}
+
+.btn-delete
+{
+    background: #dc2626;
+    color: white;
+}
+
+.btn-delete:hover
+{
+    background: #b91c1c;
+}
+
+.btn-action-icon
+{
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+}
+
+
+/* =======================================================
+   BASE MODAL
+======================================================= */
+.modal
+{
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.modal.show
+{
+    display: flex;
+}
+
+/* === ATURAN UTAMA: MAX 70vh UNTUK SEMUA MODAL === */
+.modal-content
+{
+    transform: translateY(-4vh);
+    background: white;
+    width: 100%;
+    max-width: 400px;
+    max-height: 70vh;
+    /* << PERMINTAAN UTAMA */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* badan saja yang scroll */
+    box-shadow: var(--shadow);
+}
+
+/* HEADER TETAP FIX */
+.modal-header
+{
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* BODY YANG SCROLL */
+.modal-body
+{
+    flex: 1;
+    overflow-y: auto;
+    /* << sini yang scroll */
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem;
+}
+
+/* =======================================================
+   MODAL KHUSUS — PREVIEW STRUK
+======================================================= */
+#previewModal .modal-content
+{
+    max-width: 380px;
+    width: 90%;
+    max-height: 70vh !important;
+    /* << UBAH KE 70vh */
+    margin: 0 auto !important;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+#previewModal .modal-body
+{
+    padding: 0.75rem;
+    background: #f9fafb;
+}
+
+/* =======================================================
+   SETTINGS & HISTORY MODAL
+======================================================= */
+#settingsModal .modal-content,
+#historyModal .modal-content
+{
+    max-height: 70vh !important;
+    /* << Sama: batas 70vh */
+    margin: 0 auto !important;
+}
+
+#settingsModal .modal-body,
+#historyModal .modal-body
+{
+    padding: 1rem 1.2rem 2rem;
+}
+
+
+
+/* =======================================================
+   BANK SELECTOR (tetap)
+======================================================= */
+/* Modal Pilih Tujuan — Simpel & Clean */
+/* Modal Pilih Tujuan — FONT KECIL, TOMBOL LEBAR, NYAMAN DI HP */
+#bankModal .bank-category
+{
+    font-weight: 600;
+    font-size: 0.78rem;
+    color: #6366f1;
+    margin: 1.4rem 0.4rem 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+#bankModal .bank-grid
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem 0.7rem;
+}
+
+#bankModal .bank-btn
+{
+    padding: 1.05rem 0.6rem;
+    background: #f8fafc;
+    border: 1.6px solid #e2e8f0;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.7rem;
+    /* FONT LEBIH KECIL */
+    line-height: 0.6;
+    cursor: pointer;
+    transition: all 0.2s;
+    word-break: break-word;
+}
+
+#bankModal .bank-btn:hover
+{
+    background: #eef2ff;
+    border-color: #6366f1;
+    transform: translateY(-1px);
+}
+
+/* Struk Preview */
+.struk-preview
+{
+    background: white;
+    width: 60mm;
+    min-height: auto;
+    padding: 4mm 3mm 6mm 4mm !important;
+    margin: 1rem auto;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace !important;
+    font-size: 10px !important;
+    line-height: 1.32 !important;
+    white-space: pre-wrap;
+    text-align: left !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    /* border: 2px dashed #d1d5db !important; */
+}
+
+
+
+/* === LOGO GESER KE KIRI === */
+.struk-preview img
+{
+    display: block;
+    margin: 0 auto;
+    width: 53mm !important;
+    max-width: 53mm !important;
+
+    height: auto;
+    image-rendering: crisp-edges;
+}
+
+
+/* Bottom Bar */
+.bottom-bar
+{
+    background: white;
+    border-top: 1px solid var(--gray-200);
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Bottom Bar - Animasi aktif halus */
+.nav-item
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--gray-600);
+    font-size: 0.7rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    /* Animasi halus */
+    flex: 1;
+    position: relative;
+}
+
+.nav-item.active
+{
+    color: var(--primary);
+    background: rgba(29, 78, 216, 0.1);
+    border-radius: 12px;
+    transform: translateY(-2px);
+    /* Efek "naik" sedikit */
+    box-shadow: 0 2px 8px rgba(29, 78, 216, 0.2);
+    font-weight: 600;
+}
+
+.nav-item svg
+{
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    transition: stroke 0.3s ease;
+}
+
+.nav-print
+{
+    background: var(--primary);
+    color: white !important;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    margin-top: -28px;
+    box-shadow: 0 8px 20px rgba(29, 78, 216, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 10;
+}
+
+.nav-print:hover
+{
+    transform: scale(1.1);
+    box-shadow: 0 12px 25px rgba(29, 78, 216, 0.5);
+}
+
+.nav-print svg
+{
+    width: 28px;
+    height: 28px;
+    stroke-width: 2.5;
+}
+
+@keyframes pulse
+{
+
+    0%,
+    100%
+    {
+        transform: scale(1);
+    }
+
+    50%
+    {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes spin
+{
+    to
+    {
+        transform: rotate(360deg);
+    }
+}
+
+/* Nama Pengirim List */
+.pengirim-item
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    background: white;
+    font-size: 0.95rem;
+}
+
+.pengirim-nama
+{
+    font-weight: 600;
+    flex: 1;
+}
+
+.pengirim-actions
+{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.pengirim-actions button
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.pengirim-actions button:hover
+{
+    background: var(--accent-light);
+}
+
+.pengirim-actions svg
+{
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+}
+
+.default-badge
+{
+    background: var(--primary);
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+    margin-left: 0.5rem;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 480px)
+{
+    .container
+    {
+        padding: 0.75rem;
+        padding-bottom: 90px;
+    }
+
+    .modal-content
+    {
+        transform: translateY(-6vh);
+        /* HP kecil → angkat lebih jauh */
+    }
+
+    .card
+    {
+        padding: 1rem;
+    }
+
+    .upload-area
+    {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .btn-small
+    {
+        padding: 0.3rem 0.4rem;
+        font-size: 0.65rem;
+    }
+
+    .col-admin .nominal-options .btn-small
+    {
+        font-size: 0.65rem;
+    }
+
+    .bank-btn
+    {
+        font-size: 0.85rem;
+        padding: 0.6rem;
+    }
+
+    .history-actions .btn
+    {
+        font-size: 0.7rem;
+        padding: 0.3rem;
+    }
+}
+
+
+
+
+/* ========= CUSTOM MODAL CANTIK (Confirm + Prompt) ========= */
+.custom-modal
+{
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.25s ease-out;
+}
+
+.custom-modal.show
+{
+    display: flex;
+}
+
+.custom-modal .modal-content
+{
+    background: white;
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 360px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    animation: slideUp 0.3s ease-out;
+}
+
+.custom-modal .modal-header
+{
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    text-align: center;
+    color: var(--gray-800);
+}
+
+.custom-modal .modal-body
+{
+    color: var(--gray-600);
+    font-size: 0.95rem;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.custom-modal input[type="text"]
+{
+    width: 100%;
+    padding: 0.75rem;
+    border: 1.5px solid var(--gray-300);
+    border-radius: 12px;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.custom-modal input[type="text"]:focus
+{
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+}
+
+.custom-modal .modal-actions
+{
+    display: flex;
+    gap: 0.75rem;
+}
+
+.custom-modal .modal-actions button
+{
+    flex: 1;
+    padding: 0.85rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.custom-modal .btn-cancel
+{
+    background: var(--gray-200);
+    color: var(--gray-800);
+}
+
+.custom-modal .btn-cancel:hover
+{
+    background: var(--gray-300);
+}
+
+.custom-modal .btn-danger
+{
+    background: #ef4444;
+    color: white;
+}
+
+.custom-modal .btn-danger:hover
+{
+    background: #dc2626;
+}
+
+.custom-modal .btn-primary
+{
+    background: var(--primary);
+    color: white;
+}
+
+.custom-modal .btn-primary:hover
+{
+    background: #1e40af;
+}
+
+@keyframes fadeIn
+{
+    from
+    {
+        opacity: 0;
+    }
+
+    to
+    {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp
+{
+    from
+    {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to
+    {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+.toast-base
+{
+    position: fixed;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary);
+    color: white;
+    padding: 16px 32px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 18px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    z-index: 999999;
+    opacity: 0;
+    transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-width: 92%;
+    min-width: 280px;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.5;
+    backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    pointer-events: none;
+}
+
+.toast-base.show
+{
+    top: 28px;
+    opacity: 1;
+}
+
+.toast-base.success
+{
+    background: #10b981;
+}
+
+.toast-base.warning
+{
+    background: #f59e0b;
+}
+
+.toast-base.error
+{
+    background: #ef4444;
+}
+
+.toast-base.info
+{
+    background: var(--primary);
+}
