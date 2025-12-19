@@ -31,7 +31,7 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
 
-    <script>
+    <!-- <script>
         document.addEventListener('contextmenu', function (e)
         {
             e.preventDefault();
@@ -60,7 +60,7 @@
         // 3. MATIKAN DRAG & SELECT TEXT (biar kode tidak bisa di-copy)
         document.onselectstart = function () { return false; };
         document.ondragstart = function () { return false; };
-    </script>
+    </script> -->
 
 </head>
 
@@ -341,7 +341,41 @@
                     <div id="daftarPengirim"></div>
                 </div>
 
+                <!-- Informasi Toko -->
+                <!-- <div class="settings-section">
+                    <div class="section-title">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 20a2 2 0 11-4 0 2 2 0 014 0zm10 0a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        Informasi Toko
+                    </div>
+                    <p class="section-desc">Konfigurasi informasi toko yang akan ditampilkan pada struk cetak.</p>
 
+                    <div class="form-group">
+                        <label class="form-label">Nama Toko</label>
+                        <input type="text" id="namaToko" class="form-input" value="TK BINTANG JAYA" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Alamat Toko</label>
+                        <textarea id="alamatToko" class="catatan-textarea" rows="3">Kp Cikawungading RT 4 Rw 1
+                        Kec Cipatujah Kab Tasikmalaya</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">No. Telepon</label>
+                        <input type="text" id="telpToko" class="form-input" value="TLP 0853 2264 8888" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Footer Struk</label>
+                        <textarea id="footerStruk" class="catatan-textarea" rows="2">Terima Kasih
+        Semoga Membawa Berkah</textarea>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="simpanInfoToko()">Simpan Info Toko</button>
+                </div> -->
 
                 <!-- Format Struk -->
                 <div class="settings-section">
@@ -419,6 +453,27 @@
                             Logo</button>
                     </div>
                 </div>
+
+                <!-- Logo Toko - Additional Logos -->
+                <!-- <div class="settings-section">
+                    <div class="section-title">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        Logo Transaksi Khusus
+                    </div>
+                    <p class="section-desc">Kelola logo untuk setiap jenis transaksi (E-Wallet, SAMSAT, dll).</p>
+
+                    <div class="form-group" style="display:flex; gap:0.75rem; margin-bottom:1rem;">
+                        <input type="text" id="namaLogoTambahan" class="form-input"
+                            placeholder="Contoh: E-Wallet, SAMSAT, E-Samsat" />
+                        <input type="file" id="fileLogoTambahan" accept="image/*" class="form-input" style="flex:1;" />
+                        <button class="btn btn-primary" onclick="tambahLogo()">Tambah Logo</button>
+                    </div>
+
+                    <div id="daftarLogoTambahan"></div>
+                </div> -->
 
             </div>
         </div>
@@ -541,6 +596,17 @@
         <button id="closeInstall"
             style="background:transparent; color:white; border:none; font-size:20px; padding:0 10px;">×</button>
     </div>
+
+    <!-- PETUNJUK KHUSUS iOS (iPhone/iPad) -->
+    <!-- <div id="iosInstallGuide"
+        style="display:none; position:fixed; bottom:0; left:0; right:0; background:#000; color:white; padding:16px; text-align:center; z-index:9999; font-family:Inter,sans-serif;">
+        <div style="margin-bottom:10px;">
+            <strong>Install GABIMA Link:</strong><br>
+            Tekan tombol <strong>Bagikan</strong> ↓ lalu pilih <strong>"Tambahkan ke Layar Utama"</strong>
+        </div>
+        <button onclick="document.getElementById('iosInstallGuide').style.display='none'"
+            style="background:#007aff; color:white; border:none; padding:10px 20px; border-radius:8px; font-weight:600;">Mengerti</button>
+    </div> -->
 
 
     <!-- Scripts -->
