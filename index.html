@@ -37,14 +37,27 @@
             e.preventDefault();
             return false;
         });
+
+        // 2. MATIKAN SHORTCUT INSPECT (Ctrl+Shift+I, Ctrl+U, F12, dll)
         document.onkeydown = function (e)
         {
+            // F12
             if (e.keyCode == 123) return false;
+
+            // Ctrl+Shift+I / C / J / K
             if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74 || e.keyCode == 75)) return false;
+
+            // Ctrl+U (View Source)
             if (e.ctrlKey && e.keyCode == 85) return false;
+
+            // Ctrl+S (Save page)
             if (e.ctrlKey && e.keyCode == 83) return false;
-            if (e.ctrlKey && e.keyCode == 65) return false;
+
+            // Ctrl+A (Select All) – opsional, kalau mau dimatikan juga
+            // if (e.ctrlKey && e.keyCode == 65) return false;
         };
+
+        // 3. MATIKAN DRAG & SELECT TEXT (biar kode tidak bisa di-copy)
         document.onselectstart = function () { return false; };
         document.ondragstart = function () { return false; };
     </script>
@@ -95,6 +108,7 @@
                 <label class="form-label">Jenis Transaksi</label>
                 <select id="jenisTransaksi" class="form-input">
                     <option value="Transfer Antar Bank">Transfer Antar Bank</option>
+                    <option value="Pembayaran QRIS">Pembayaran QRIS</option>
                     <option value="Top Up E-Wallet">Top Up E-Wallet</option>
                     <option value="Top Up E-Money">Top Up E-Money</option>
                     <option value="Pembayaran Virtual Account">Pembayaran Virtual Account</option>
@@ -532,8 +546,8 @@
     <!-- Scripts -->
     <script src="js/version.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script src="js/info-toko.js"></script>
     <script src="js/app.js"></script>
+
 
 
 </body>
